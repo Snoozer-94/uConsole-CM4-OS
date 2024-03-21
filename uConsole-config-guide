@@ -1,0 +1,86 @@
+sudo mkdir -p /mnt/p1
+
+
+sudo losetup --show -f -P <path/to/image>
+#assume loop0
+sudo mount /dev/loop0p2 /mnt/p1
+sudo mount /dev/loop0p1 /mnt/p1/boot
+cd /mnt/p1
+sudo mount --bind /dev dev/
+sudo mount --bind /sys sys/
+sudo mount --bind /proc proc/
+sudo mount --bind /dev/pts dev/pts
+sudo chroot .
+
+
+
+curl https://raw.githubusercontent.com/clockworkpi/apt/main/debian/KEY.gpg | tee /etc/apt/trusted.gpg.d/clockworkpi.asc
+echo "deb https://raw.githubusercontent.com/clockworkpi/apt/main/debian/ stable main" | tee -a /etc/apt/sources.list.d/clockworkpi.list
+sudo apt update && sudo apt install devterm-fan-temp-daemon-cm4 devterm-kernel-cm4-rpi devterm-audio-patch devterm-wiringpi-cm4-cpi -y
+nano /etc/dphys-swapfile
+#ADD: "CONF_SWAPSIZE=512" then save by Ctrl+X > Y > Enter
+nano /etc/hostname
+ADD: "cpi" then Ctrl+X > Y > Enter
+nano /etc/skel/.config/monitors.xml
+and if you want:
+nano /home/{pi,rpi-first-boot-wizard}/.config/monitors.xml
+ADD:"
+<monitors version="2">
+  <configuration>
+    <logicalmonitor>
+      <x>0</x>
+      <y>0</y>
+      <primary>yes</primary>
+      <monitor>
+        <monitorspec>
+          <connector>DSI-1</connector>
+          <vendor>unknown</vendor>
+          <product>unknown</product>
+          <serial>unknown</serial>
+        </monitorspec>
+        <mode>
+          <width>1280</width>
+          <height>720</height>
+          <rate>60.000</rate>
+        </mode>
+      </monitor>
+      <transform>
+        <rotation>normal</rotation>
+      </transform>
+    </logicalmonitor>
+  </configuration>
+</monitors>
+"
+then Ctrl+X > Y > Enter
+apt update
+#update kernel
+apt install -y uconsole-kernel-cm4-rpi 
+#install additional games/emulators
+apt install -y devterm-tic80-cpi uconsole-love2d retroarch dosbox  devterm-cavestory-cpi-cm4  uconsole-liko12 uconsole-lowresnx uconsole-dosbox-staging pppoe 
+cd /usr/local/bin/
+git clone -b  uconsole-cm4 https://github.com/cuu/skel.git
+cp -rf skel/etc/xdg/autostart/first-touch.desktop /etc/xdg/autostart/
+cp -rf skel/usr/local/bin/chgpas.sh /usr/local/bin/
+apt install gparted #just incase you have unused storage probllems
+
+#4G install (packages come up as error, don't know solution)
+apt install uconsole-4g-utils-cm4 -y
+bash -c 'cat << EOF > /etc/modprobe.d/blacklist-qmi.conf
+blacklist qmi_wwan
+blacklist cdc_wdm
+EOF'
+
+exit
+
+
+
+cd -
+sudo umount /mnt/p1/dev/pts
+sudo umount /mnt/p1/dev
+sudo umount /mnt/p1/proc
+sudo umount /mnt/p1/sys
+##clear bash 
+sudo rm -rf /mnt/p1/root/.bash_history
+sudo umount /mnt/p1/boot
+sudo umount /mnt/p1
+sudo losetup -D /dev/loop0
