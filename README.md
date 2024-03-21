@@ -10,6 +10,10 @@ CrookedNeck-2024-03-15-raspios-bookworm-arm64.img.7z - [Not available] Basically
 
 Setup your own OS for uConsole:
 
+Help yourself to the https://github.com/Snoozer-94/uConsole-CM4-OS/blob/main/uConsole-config-guide to have nice and easy copy/paste commands to put in the terminal with most of the Devterm stuff taken out. 
+
+or
+
 Using both links bellow supplied by clockworkpi, it's a rough step by step instructions on chroot in on your chosen OS to create all needed installs before burning image onto an sd. My recommendation is to follow the uConsole guide for the chroot in and out, and for the install use Devterm guide first then uConsole, this will install everything then get rid of all files assosiated with Devterm. Yes there are some steps that you can skip because of deleting stuff that you just put on there with the Devterm instructions, hopefully i will go through and make my own guide once i get to know the process and also get stuff like 4G packages and other small issues sorted.
 
 https://github.com/clockworkpi/uConsole/wiki/How-uConsole-CM4-OS-image-made
