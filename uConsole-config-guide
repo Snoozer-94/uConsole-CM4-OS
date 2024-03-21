@@ -1,5 +1,12 @@
-sudo mkdir -p /mnt/p1
+This .txt file is so that you can easily copy/paste commands into your terminal.
+Make sure to replace anything in <...> to whatever it says.
+When using nano to paste in whats in the "." thats after '#ADD:' and save with the following commands.
+You can copy/paste each paragraph (including # lines) and press enter just to make things quicker and easier.
 
+CHROOT IN:
+
+#Only for the first time, you can re-use p1 for future configerations
+sudo mkdir -p /mnt/p1 
 
 sudo losetup --show -f -P <path/to/image>
 #assume loop0
@@ -13,18 +20,23 @@ sudo mount --bind /dev/pts dev/pts
 sudo chroot .
 
 
+INSTALLS AND CONFIGERATIONS:
 
 curl https://raw.githubusercontent.com/clockworkpi/apt/main/debian/KEY.gpg | tee /etc/apt/trusted.gpg.d/clockworkpi.asc
 echo "deb https://raw.githubusercontent.com/clockworkpi/apt/main/debian/ stable main" | tee -a /etc/apt/sources.list.d/clockworkpi.list
-sudo apt update && sudo apt install devterm-fan-temp-daemon-cm4 devterm-kernel-cm4-rpi devterm-audio-patch devterm-wiringpi-cm4-cpi -y
+
+nano /etc/hostname
+#ADD: "cpi" then Ctrl+X > Y > Enter
+
+apt update && apt install devterm-fan-temp-daemon-cm4 devterm-kernel-cm4-rpi devterm-audio-patch devterm-wiringpi-cm4-cpi -y
+
 nano /etc/dphys-swapfile
 #ADD: "CONF_SWAPSIZE=512" then save by Ctrl+X > Y > Enter
-nano /etc/hostname
-ADD: "cpi" then Ctrl+X > Y > Enter
+
 nano /etc/skel/.config/monitors.xml
-and if you want:
+#and if you want:
 nano /home/{pi,rpi-first-boot-wizard}/.config/monitors.xml
-ADD:"
+#ADD:"
 <monitors version="2">
   <configuration>
     <logicalmonitor>
@@ -51,7 +63,8 @@ ADD:"
   </configuration>
 </monitors>
 "
-then Ctrl+X > Y > Enter
+#then Ctrl+X > Y > Enter
+
 apt update
 #update kernel
 apt install -y uconsole-kernel-cm4-rpi 
@@ -73,6 +86,7 @@ EOF'
 exit
 
 
+CHROOT OUT:
 
 cd -
 sudo umount /mnt/p1/dev/pts
