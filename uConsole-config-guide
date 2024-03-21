@@ -28,7 +28,7 @@ echo "deb https://raw.githubusercontent.com/clockworkpi/apt/main/debian/ stable 
 nano /etc/hostname
 #ADD: "cpi" then Ctrl+X > Y > Enter
 
-bash -c 'cat << EOF > etc/X11/Xsession.d/100custom_xrandr
+bash -c 'cat << EOF > etc/X11/Xsession.d/90custom_xrandr
 xrandr --output DSI-1
 EOF'
 apt update && apt install devterm-fan-temp-daemon-cm4 devterm-kernel-cm4-rpi devterm-audio-patch devterm-wiringpi-cm4-cpi -y
