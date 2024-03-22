@@ -26,7 +26,7 @@ curl https://raw.githubusercontent.com/clockworkpi/apt/main/debian/KEY.gpg | tee
 echo "deb https://raw.githubusercontent.com/clockworkpi/apt/main/debian/ stable main" | tee -a /etc/apt/sources.list.d/clockworkpi.list
 
 nano /etc/hostname
-#ADD: "cpi" or whatever but only after next line of code, then save by Ctrl+X > Y > Enter
+#ADD: "cpi" or whatever but only after next section of code, then save by Ctrl+X > Y > Enter
 
 bash -c 'cat << EOF > etc/X11/Xsession.d/90custom_xrandr
 xrandr --output DSI-1
