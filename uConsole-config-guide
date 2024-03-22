@@ -26,7 +26,7 @@ curl https://raw.githubusercontent.com/clockworkpi/apt/main/debian/KEY.gpg | tee
 echo "deb https://raw.githubusercontent.com/clockworkpi/apt/main/debian/ stable main" | tee -a /etc/apt/sources.list.d/clockworkpi.list
 
 nano /etc/hostname
-#ADD: "cpi" then Ctrl+X > Y > Enter
+#ADD: "cpi" or whatever but only after next line of code, then save by Ctrl+X > Y > Enter
 
 bash -c 'cat << EOF > etc/X11/Xsession.d/90custom_xrandr
 xrandr --output DSI-1
@@ -34,7 +34,7 @@ EOF'
 apt update && apt install devterm-fan-temp-daemon-cm4 devterm-kernel-cm4-rpi devterm-audio-patch devterm-wiringpi-cm4-cpi -y
 
 nano /etc/dphys-swapfile
-#ADD: "CONF_SWAPSIZE=512" then save by Ctrl+X > Y > Enter
+#ADD/REPLACE: "CONF_SWAPSIZE=512" then Ctrl+X > Y > Enter
 
 nano /etc/skel/.config/monitors.xml
 #and if you want:
