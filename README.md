@@ -1,6 +1,8 @@
 # uConsole CM4 OS
  Community made OS's compatible for ClockworkPi uConsole CM4
 
+ HOOOOOLDD UUUPP!!! This project is pretty much dead but if you want a nice selection (arch as well as debian based) of os's then I would recommend clicking this link>>> https://forum.clockworkpi.com/t/bookworm-6-6-y-for-the-uconsole-and-devterm/13235 <<<
+
 All OS's are in Releases >>>>>>>>>
 
 CPi CM4 OS Bookworm - Using the image ClockworkPi supplies, i've updated it from bullseye to bookworm with all the content CPi supplies. Kernel is 5.10.17-v8+ but if you want a more up to date one try this one:
