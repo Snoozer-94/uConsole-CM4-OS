@@ -1,7 +1,7 @@
 # uConsole CM4 OS
  Community made OS's compatible for ClockworkPi uConsole CM4
 
- HOOOOOLDD UUUPP!!! This project is pretty much dead but if you want a nice selection (arch as well as debian based) of os's then I would recommend clicking this link>>> https://forum.clockworkpi.com/t/bookworm-6-6-y-for-the-uconsole-and-devterm/13235 <<<
+ HOOOOOLDD UUUPP!!! This project is pretty much dead and just here as an archive but if you want a nice selection (arch as well as debian based) of os's then I would recommend clicking this link>>> https://forum.clockworkpi.com/t/bookworm-6-6-y-for-the-uconsole-and-devterm/13235 <<<
 
 All OS's are in Releases >>>>>>>>>
 
